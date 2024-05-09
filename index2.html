@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="section2">
+   <div>
+    <h2 class="head">Quiz APP</h2>
+    <div class="quiz2">
+    <div>
+        <h2 id="qns"></h2>
+    </div>
+
+    <div>
+    <input type="radio" name="option" id="ans1" class="options">
+    <label id="opt1"></label>
+    </div>
+
+    <div>
+        <input type="radio" name="option" id="ans1" class="options">
+        <label id="opt2"></label>
+        </div>
+
+        <div>
+            <input type="radio" name="option" id="ans1" class="options">
+            <label id="opt3"></label>
+            </div>
+
+            <div>
+                <input type="radio" name="option" id="ans1" class="options">
+                <label id="opt4"></label>
+                </div>
+
+           <div class="btn">
+            <h2 class="myScore"></h2>
+            <button  class="btn3" onclick="next()" id="next">Next</button>
+           </div>
+    </div>
+   </div>
+        
+    </section>
+</body>
+<script>
+    let data = [
+    {
+        Q:"Question:- What is the Capital of France?",
+        a:"Paris",
+        b:"Dehli",
+        c:"Islamabad",
+        d:"London",
+        ans:"ans1",
+    },
+
+    {
+        Q:"Question:- What is the largest planet in our solar system?",
+        a:"Earth",
+        b:"Jupitar",
+        c:"Mars",
+        d:"Platu",
+        ans:"ans2",
+    },
+
+    {   
+        Q:"Question:-JS is used for:",
+        a:"Frontend",
+        b:"Animation",
+        c:"Dynamically Update content",
+        d:"Backend",
+        ans:"ans3",
+    },
+
+    {
+        Q:"Question:-JS stands for what:",
+        a:"JavaScience",
+        b:"JavaScript",
+        c:"JavaSecure",
+        d:"JavaS",
+        ans:"ans2",
+    },
+    {
+        Q:"Question:-What is the National game of England?",
+        a:"Cricket",
+        b:"Football",
+        c:"Hockey",
+        d:"Volleyball",
+        ans:"ans1"
+    }
+];
+
+let question = document.getElementById("qns");
+let option1 = document.getElementById("opt1");
+let option2 = document.getElementById("opt2");
+let option3 = document.getElementById("opt3");
+let option4 = document.getElementById("opt4");
+
+let answers = document.querySelectorAll(".options");
+let num = 0;
+let score = 0;
+let myScore = document.querySelector(".myScore");
+let nextbtn = document.querySelector("#next")
+
+question.innerHTML = data[num].Q;
+option1.innerHTML = data[num].a;
+option2.innerHTML = data[num].b;
+option3.innerHTML = data[num].c;
+option4.innerHTML = data[num].d;
+
+function checkAns() {
+    let ans;
+    answers.forEach((cureElement)=>{
+if(cureElement.checked){
+    ans = cureElement.id;
+    console.log(ans)
+}
+    })
+    return ans;
+}
+
+function next() {
+let checkedAns = checkAns();
+if(checkedAns == data[num].ans){
+    score++;
+}
+    num++;
+    if(num<data.length){
+    question.innerHTML = data[num].Q;
+    option1.innerHTML = data[num].a;
+    option2.innerHTML = data[num].b;
+    option3.innerHTML = data[num].c;
+    option4.innerHTML = data[num].d;
+}
+else{
+    myScore.innerHTML = `You Scored ${score}/${data.length} <br/> <br/>
+    <button onclick="location.reload()">Play Again <button/>`
+        nextbtn.style.display="none"
+}
+}
+</script>
+</html> 
